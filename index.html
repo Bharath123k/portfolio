@@ -1,65 +1,425 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bharath's Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bharath | Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      scroll-behavior:smooth;
+      font-family:'Poppins',sans-serif;
+    }
+
+    body{
+      background:#0f172a;
+      color:white;
+      overflow-x:hidden;
+    }
+
+    /* Navbar */
+
+    header{
+      position:fixed;
+      width:100%;
+      top:0;
+      z-index:1000;
+      backdrop-filter:blur(12px);
+      background:rgba(15,23,42,0.6);
+      border-bottom:1px solid rgba(255,255,255,0.1);
+    }
+
+    nav{
+      display:flex;
+      justify-content:center;
+      gap:40px;
+      padding:20px;
+    }
+
+    nav a{
+      color:white;
+      text-decoration:none;
+      font-size:16px;
+      transition:0.3s;
+      position:relative;
+    }
+
+    nav a:hover{
+      color:#38bdf8;
+    }
+
+    nav a::after{
+      content:'';
+      position:absolute;
+      left:0;
+      bottom:-5px;
+      width:0%;
+      height:2px;
+      background:#38bdf8;
+      transition:0.3s;
+    }
+
+    nav a:hover::after{
+      width:100%;
+    }
+
+    /* Hero Section */
+
+    #home{
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      flex-direction:column;
+      padding:20px;
+      background:linear-gradient(to right,#0f172a,#1e293b);
+    }
+
+    #home h1{
+      font-size:65px;
+      font-weight:700;
+      margin-bottom:15px;
+    }
+
+    #home span{
+      color:#38bdf8;
+    }
+
+    #home p{
+      font-size:22px;
+      color:#cbd5e1;
+      margin-bottom:30px;
+    }
+
+    .hero-btn{
+      padding:14px 35px;
+      border:none;
+      border-radius:40px;
+      background:linear-gradient(to right,#38bdf8,#0ea5e9);
+      color:white;
+      font-size:16px;
+      cursor:pointer;
+      transition:0.3s;
+      text-decoration:none;
+    }
+
+    .hero-btn:hover{
+      transform:translateY(-4px);
+      box-shadow:0 10px 30px rgba(56,189,248,0.4);
+    }
+
+    /* Sections */
+
+    section{
+      padding:100px 10%;
+    }
+
+    .section-title{
+      font-size:40px;
+      margin-bottom:40px;
+      text-align:center;
+      color:#38bdf8;
+    }
+
+    /* About */
+
+    .about-content{
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      gap:40px;
+      justify-content:center;
+    }
+
+    .about-card{
+      background:#1e293b;
+      padding:40px;
+      border-radius:20px;
+      max-width:700px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    .about-card p{
+      line-height:1.8;
+      color:#cbd5e1;
+    }
+
+    /* Skills */
+
+    .skills-container{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+      gap:25px;
+    }
+
+    .skill-card{
+      background:#1e293b;
+      padding:30px;
+      border-radius:18px;
+      text-align:center;
+      transition:0.3s;
+      border:1px solid rgba(255,255,255,0.05);
+    }
+
+    .skill-card:hover{
+      transform:translateY(-10px);
+      background:#273549;
+    }
+
+    .skill-card h3{
+      margin-top:15px;
+      color:#38bdf8;
+    }
+
+    /* Projects */
+
+    .projects-container{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:30px;
+    }
+
+    .project-card{
+      background:#1e293b;
+      padding:30px;
+      border-radius:20px;
+      transition:0.3s;
+      box-shadow:0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    .project-card:hover{
+      transform:translateY(-8px);
+    }
+
+    .project-card h3{
+      margin-bottom:15px;
+      color:#38bdf8;
+    }
+
+    .project-card p{
+      color:#cbd5e1;
+      line-height:1.6;
+    }
+
+    /* Contact */
+
+    .contact-form{
+      max-width:700px;
+      margin:auto;
+      display:flex;
+      flex-direction:column;
+      gap:20px;
+    }
+
+    .contact-form input,
+    .contact-form textarea{
+      padding:16px;
+      border:none;
+      border-radius:12px;
+      background:#1e293b;
+      color:white;
+      outline:none;
+    }
+
+    .contact-form textarea{
+      resize:none;
+      height:150px;
+    }
+
+    .contact-form button{
+      padding:15px;
+      border:none;
+      border-radius:12px;
+      background:linear-gradient(to right,#38bdf8,#0ea5e9);
+      color:white;
+      font-size:16px;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .contact-form button:hover{
+      transform:translateY(-3px);
+    }
+
+    /* Footer */
+
+    footer{
+      text-align:center;
+      padding:25px;
+      background:#020617;
+      color:#94a3b8;
+    }
+
+    /* Responsive */
+
+    @media(max-width:768px){
+
+      #home h1{
+        font-size:45px;
+      }
+
+      nav{
+        gap:20px;
+        flex-wrap:wrap;
+      }
+
+      .section-title{
+        font-size:32px;
+      }
+    }
+
+  </style>
 </head>
+
 <body>
 
-    <header>
-        <nav>
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#skills">Skills</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </header>
+  <header>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 
-    <section id="home">
-        <h1>Hello, I'm Bharath</h1>
-        <p>Web Developer | AI Enthusiast</p>
-    </section>
+  <!-- Hero -->
 
-    <section id="about">
-        <h2>About Me</h2>
-        <p>I am a passionate developer building web applications using HTML, CSS, and JS.</p>
-    </section>
+  <section id="home">
+    <h1>Hello, I'm <span>Bharath</span></h1>
+    <p>Full Stack Developer | AI Enthusiast | Creative Designer</p>
 
-    <section id="skills">
-        <h2>Skills</h2>
-        <ul>
-            <li>HTML</li>
-            <li>CSS</li>
-            <li>JavaScript</li>
-        </ul>
-    </section>
+    <a href="#projects" class="hero-btn">
+      View My Work
+    </a>
+  </section>
 
-    <section id="projects">
-        <h2>Projects</h2>
-        <div class="project">
-            <h3>Portfolio Website</h3>
-            <p>A personal portfolio to showcase my work.</p>
-        </div>
-        <!-- Add more projects -->
-    </section>
+  <!-- About -->
 
-    <section id="contact">
-        <h2>Contact Me</h2>
-        <form>
-            <input type="text" placeholder="Name" required>
-            <input type="email" placeholder="Email" required>
-            <textarea placeholder="Message" required></textarea>
-            <button type="submit">Send</button>
-        </form>
-    </section>
+  <section id="about">
 
-    <footer>
-        <p>&copy; 2025 Bharath Korra</p>
-    </footer>
+    <h2 class="section-title">About Me</h2>
 
-    <script src="script.js"></script>
+    <div class="about-content">
+
+      <div class="about-card">
+        <p>
+          I am a passionate web developer focused on building
+          modern, scalable, and visually impressive applications.
+          I specialize in frontend development, AI integrations,
+          responsive design, and production-level web experiences.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- Skills -->
+
+  <section id="skills">
+
+    <h2 class="section-title">Skills</h2>
+
+    <div class="skills-container">
+
+      <div class="skill-card">
+        <h3>HTML5</h3>
+      </div>
+
+      <div class="skill-card">
+        <h3>CSS3</h3>
+      </div>
+
+      <div class="skill-card">
+        <h3>JavaScript</h3>
+      </div>
+
+      <div class="skill-card">
+        <h3>React JS</h3>
+      </div>
+
+      <div class="skill-card">
+        <h3>Node JS</h3>
+      </div>
+
+      <div class="skill-card">
+        <h3>AI Integrations</h3>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- Projects -->
+
+  <section id="projects">
+
+    <h2 class="section-title">Projects</h2>
+
+    <div class="projects-container">
+
+      <div class="project-card">
+        <h3>Portfolio Website</h3>
+        <p>
+          A responsive and modern portfolio website
+          built using HTML, CSS, and JavaScript.
+        </p>
+      </div>
+
+      <div class="project-card">
+        <h3>AI Chat Assistant</h3>
+        <p>
+          Production-level AI assistant using React,
+          FastAPI, and Groq API integrations.
+        </p>
+      </div>
+
+      <div class="project-card">
+        <h3>E-Commerce UI</h3>
+        <p>
+          Advanced frontend shopping experience with
+          animations and responsive layouts.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- Contact -->
+
+  <section id="contact">
+
+    <h2 class="section-title">Contact Me</h2>
+
+    <form class="contact-form">
+
+      <input type="text" placeholder="Your Name" required>
+
+      <input type="email" placeholder="Your Email" required>
+
+      <textarea placeholder="Your Message"></textarea>
+
+      <button type="submit">
+        Send Message
+      </button>
+
+    </form>
+
+  </section>
+
+  <footer>
+    <p>© 2026 Bharath Korra | All Rights Reserved</p>
+  </footer>
+
 </body>
 </html>
